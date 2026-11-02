@@ -1,70 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090b24">
-  <title>Diwali Glow | A Festival of Lights</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diwali Glow ✨</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --bg:#10091e;--card:#241334;--gold:#ffd166;
+ --pink:#ff70a6;--text:#fff3d6;--glow:#ff9f1c
+}
+body{
+ background:var(--bg);color:var(--text);
+ font-family:Georgia,serif;text-align:center;
+ overflow-x:hidden;transition:.5s
+}
+body.fantasy{--bg:#100d35;--card:#24205b;--gold:#c9a7ff;--pink:#ff9de2;--glow:#9b5de5}
+body.future{--bg:#031b2b;--card:#073b4c;--gold:#00f5d4;--pink:#00bbf9;--glow:#00f5d4}
+body.royal{--bg:#270d12;--card:#491b1b;--gold:#ffcf56;--pink:#e9a23b;--glow:#ff8c42}
+
+header{padding:25px 12px}
+h1{
+ font-size:clamp(35px,8vw,65px);
+ color:var(--gold);
+ text-shadow:0 0 15px var(--glow),0 0 35px var(--glow);
+ animation:shine 2s infinite alternate
+}
+@keyframes shine{to{text-shadow:0 0 25px var(--pink),0 0 45px var(--glow)}}
+.subtitle{margin:12px;font-size:17px}
+button{
+ border:1px solid var(--gold);background:var(--card);
+ color:var(--gold);padding:11px 17px;border-radius:25px;
+ margin:6px;cursor:pointer;font-size:14px
+}
+button:hover{background:var(--gold);color:#180d20}
+.themes{padding:15px}
+.hero{padding:20px 12px;min-height:340px}
+.diya{
+ width:180px;height:95px;margin:45px auto 20px;
+ position:relative;transform-style:preserve-3d;
+ animation:float 3s ease-in-out infinite
+}
+.bowl{
+ position:absolute;bottom:0;width:180px;height:75px;
+ background:linear-gradient(#ffcf56,#d75b12);
+ border-radius:15px 15px 90px 90px;
+ box-shadow:0 15px 35px var(--glow)
+}
+.flame{
+ position:absolute;z-index:2;left:73px;top:-48px;
+ width:35px;height:55px;
+ background:radial-gradient(ellipse at bottom,#fff 5%,#ffe66d 35%,#ff7b00 70%,transparent 72%);
+ border-radius:50% 50% 45% 45%;
+ filter:drop-shadow(0 0 17px orange);
+ animation:flicker .5s infinite alternate
+}
+@keyframes flicker{to{transform:rotate(8deg) scale(.9)}}
+@keyframes float{50%{transform:translateY(-13px) rotateY(12deg)}}
+
+section{padding:30px 15px}
+h2{color:var(--gold);font-size:27px;margin-bottom:20px}
+.grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+ gap:14px;max-width:850px;margin:auto
+}
+.card{
+ background:var(--card);padding:20px 12px;border-radius:18px;
+ border:1px solid var(--gold);box-shadow:0 0 15px #0005;
+ transition:.3s
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 0 20px var(--glow)}
+.card .emoji{font-size:35px;margin-bottom:10px}
+.card h3{color:var(--gold);margin-bottom:8px}
+.card p{font-size:14px;line-height:1.5}
+input{
+ padding:13px;border-radius:20px;border:1px solid var(--gold);
+ background:var(--card);color:white;width:min(85%,300px);
+ margin:10px
+}
+#wish{color:var(--pink);font-size:20px;margin:20px}
+.rangoli{
+ width:150px;height:150px;margin:20px auto;
+ border:8px dotted var(--gold);border-radius:50%;
+ outline:8px double var(--pink);
+ box-shadow:0 0 25px var(--glow);
+ animation:spin 15s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+footer{padding:25px;color:var(--gold)}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:10}
+.stars{
+ position:fixed;inset:0;pointer-events:none;z-index:-1;
+ background-image:radial-gradient(white 1px,transparent 1px);
+ background-size:55px 55px;opacity:.3;
+ animation:twinkle 3s infinite alternate
+}
+@keyframes twinkle{to{opacity:.7}}
+</style>
 </head>
+
 <body>
-  <canvas id="fireworks" aria-hidden="true"></canvas>
-  <div class="stars" aria-hidden="true"></div>
+<div class="stars"></div>
+<canvas id="fireworks"></canvas>
 
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="Diwali Glow home">✦ Diwali Glow</a>
-    <button class="music-btn" id="musicBtn" type="button" aria-pressed="false">♫ <span>Play music</span></button>
-  </header>
+<header>
+<h1>✨ Diwali Glow ✨</h1>
+<p class="subtitle">A Festival of Lights, Love & Happiness</p>
+</header>
 
-  <main>
-    <section class="hero">
-      <div class="eyebrow"><span></span> THE FESTIVAL OF LIGHTS <span></span></div>
-      <div class="rangoli" aria-hidden="true">
-        <div class="rangoli-inner">✿</div>
-      </div>
-      <p class="intro">May your world be filled with</p>
-      <h1>Happy <span>Diwali</span></h1>
-      <p class="tagline">A little light, a lot of love, and endless reasons to smile.</p>
+<div class="themes">
+<h2>Choose Your Diwali Theme</h2>
+<button onclick="theme('')">👑 Luxury Gold</button>
+<button onclick="theme('fantasy')">🦋 Magical Fantasy</button>
+<button onclick="theme('future')">🚀 Futuristic 3D</button>
+<button onclick="theme('royal')">🏰 Indian Royal</button>
+</div>
 
-      <div class="diya-stage" aria-label="A glowing animated diya">
-        <div class="glow"></div>
-        <div class="flame"><i></i></div>
-        <div class="wick"></div>
-        <div class="bowl"><div class="bowl-shine"></div></div>
-        <div class="base"></div>
-      </div>
+<div class="hero">
+<div class="diya">
+<div class="flame"></div>
+<div class="bowl"></div>
+</div>
+<h2>Happy Diwali!</h2>
+<p>May your life shine brighter than a thousand diyas.</p>
+<button onclick="firework()">🎆 Celebrate with Fireworks</button>
+</div>
 
-      <div class="greeting-card">
-        <p class="card-kicker">SEND A LITTLE HAPPINESS</p>
-        <h2>Create your Diwali wish</h2>
-        <p class="card-description">Make this greeting personal and share the festive joy with someone special.</p>
-        <label for="sender">Your name</label>
-        <input id="sender" type="text" maxlength="35" placeholder="Enter your name">
-        <label for="receiver">Send your wishes to</label>
-        <input id="receiver" type="text" maxlength="35" placeholder="Friend or family member's name">
-        <label for="customMessage">Your personal message (optional)</label>
-        <textarea id="customMessage" rows="3" maxlength="180" placeholder="Wishing you light, laughter and happiness..."></textarea>
-        <button class="primary-btn" id="createBtn" type="button">Create my greeting <span>✧</span></button>
-        <div class="personal-result" id="personalResult" aria-live="polite" hidden>
-          <div class="result-divider">✦ ✦ ✦</div>
-          <p class="result-to" id="resultTo"></p>
-          <h3>✨ Happy Diwali! ✨</h3>
-          <p id="resultMessage"></p>
-          <p class="result-from" id="resultFrom"></p>
-          <button class="share-btn" id="shareBtn" type="button">Share greeting ↗</button>
-          <p class="share-note" id="shareNote" aria-live="polite"></p>
-        </div>
-      </div>
+<section>
+<h2>🪔 Four Beautiful Themes</h2>
+<div class="grid">
+<div class="card"><div class="emoji">👑</div>
+<h3>Luxury Gold</h3><p>Golden lights, royal elegance and sparkling celebrations.</p></div>
+<div class="card"><div class="emoji">🦋</div>
+<h3>Magical Fantasy</h3><p>A magical world full of dreams, stars and glowing lights.</p></div>
+<div class="card"><div class="emoji">🚀</div>
+<h3>Futuristic 3D</h3><p>A modern neon-inspired Diwali experience.</p></div>
+<div class="card"><div class="emoji">🏰</div>
+<h3>Indian Royal</h3><p>Traditional Indian colours and royal festive charm.</p></div>
+</div>
+</section>
 
-      <div class="bottom-wish">
-        <span>🪔</span>
-        <p>May the light within you shine brighter every day.</p>
-        <span>🪔</span>
-      </div>
-    </section>
-  </main>
+<section>
+<h2>🌸 Rangoli of Happiness</h2>
+<div class="rangoli"></div>
+<p>Let colours bring happiness into your life.</p>
+</section>
 
-  <footer>Made with <span>♥</span> for a bright and beautiful Diwali</footer>
-  <script src="script.js"></script>
+<section>
+<h2>🪔 Five Days of Light</h2>
+<div class="grid">
+<div class="card"><div class="emoji">🌼</div><h3>Dhanteras</h3><p>A day of prosperity and new beginnings.</p></div>
+<div class="card"><div class="emoji">🪔</div><h3>Naraka Chaturdashi</h3><p>A celebration of light and positivity.</p></div>
+<div class="card"><div class="emoji">✨</div><h3>Diwali</h3><p>The festival of lights and joy.</p></div>
+<div class="card"><div class="emoji">🎁</div><h3>Govardhan Puja</h3><p>A day of gratitude and devotion.</p></div>
+<div class="card"><div class="emoji">❤️</div><h3>Bhai Dooj</h3><p>A celebration of sibling love.</p></div>
+</div>
+</section>
+
+<section>
+<h2>💌 Create Your Personal Wish</h2>
+<input id="name" placeholder="Enter your name">
+<br>
+<button onclick="makeWish()">Create My Wish ✨</button>
+<p id="wish"></p>
+<button onclick="shareWish()">Share on WhatsApp</button>
+</section>
+
+<section>
+<h2>🎃 Halloween Corner</h2>
+<div class="card" style="max-width:400px;margin:auto">
+<div class="emoji">🎃 👻 🦇</div>
+<h3>Spooky Season!</h3>
+<p>Wishing you a magical and spooky celebration!</p>
+</div>
+</section>
+
+<footer>
+<p>Made with ❤️ & ✨ for the Festival of Lights</p>
+<p>May your world always glow!</p>
+</footer>
+
+<script>
+function theme(t){
+ document.body.className=t;
+}
+function makeWish(){
+ let n=document.getElementById('name').value.trim();
+ if(!n){alert('Please enter your name!');return}
+ document.getElementById('wish').innerText=
+ '✨ Happy Diwali, '+n+'! May your life be filled with love, light and endless happiness! 🪔';
+}
+function shareWish(){
+ let w=document.getElementById('wish').innerText;
+ if(!w){alert('Create your wish first!');return}
+ window.open('https://wa.me/?text='+encodeURIComponent(w),'_blank');
+}
+
+const canvas=document.getElementById('fireworks');
+const ctx=canvas.getContext('2d');
+function resize(){
+ canvas.width=innerWidth;
+ canvas.height=innerHeight;
+}
+resize();
+window.addEventListener('resize',resize);
+let particles=[];
+function firework(){
+ let x=Math.random()*canvas.width;
+ let y=Math.random()*canvas.height*.55;
+ for(let i=0;i<65;i++){
+  let a=Math.PI*2*i/65;
+  let speed=1+Math.random()*4;
+  particles.push({
+   x:x,y:y,vx:Math.cos(a)*speed,
+   vy:Math.sin(a)*speed,life:70
+  });
+ }
+}
+function animate(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ particles.forEach((p,i)=>{
+  p.x+=p.vx;p.y+=p.vy;p.life--;
+  ctx.fillStyle='hsl('+((p.life*5)%360)+',100%,65%)';
+  ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fill();
+  if(p.life<=0)particles.splice(i,1);
+ });
+ requestAnimationFrame(animate);
+}
+animate();
+</script>
 </body>
 </html>
