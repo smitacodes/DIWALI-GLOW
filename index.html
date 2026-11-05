@@ -3,598 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diwali Glow | Festival of Lights</title>
-
+<meta name="theme-color" content="#160b25">
+<title>Diwali Glow</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-:root{
-  --bg:#10091e;
-  --panel:#21132e;
-  --gold:#ffd166;
-  --accent:#ff8c42;
-  --pink:#ff70a6;
-  --white:#fff5df;
-}
-
-body{
-  background:var(--bg);
-  color:var(--white);
-  font-family:Georgia,serif;
-  overflow-x:hidden;
-  transition:background .6s;
-}
-
-body.fantasy{
-  --bg:#100d35;--panel:#24205b;
-  --gold:#d7b8ff;--accent:#9b5de5;--pink:#ff9de2;
-}
-body.future{
-  --bg:#031b2b;--panel:#073b4c;
-  --gold:#00f5d4;--accent:#00bbf9;--pink:#90fff0;
-}
-body.royal{
-  --bg:#270d12;--panel:#491b1b;
-  --gold:#ffcf56;--accent:#d97706;--pink:#f4a261;
-}
-
-#particles{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-}
-
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 7%;
-  position:relative;
-  z-index:2;
-  border-bottom:1px solid #ffffff20;
-}
-
-.logo{
-  color:var(--gold);
-  font-size:23px;
-  font-weight:bold;
-  letter-spacing:2px;
-}
-
-nav a{
-  color:var(--white);
-  text-decoration:none;
-  margin-left:18px;
-  font-size:14px;
-}
-
-.hero{
-  min-height:85vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  text-align:center;
-  padding:50px 15px;
-  position:relative;
-  z-index:1;
-}
-
-.tag{
-  color:var(--gold);
-  letter-spacing:5px;
-  font-size:12px;
-  margin-bottom:20px;
-}
-
-h1{
-  font-size:clamp(42px,9vw,85px);
-  color:var(--gold);
-  text-shadow:0 0 15px var(--accent),
-              0 0 40px var(--accent);
-  animation:titleGlow 2s infinite alternate;
-}
-
-@keyframes titleGlow{
-  to{ text-shadow:0 0 25px var(--pink),0 0 65px var(--accent)}
-}
-
-.hero p{
-  max-width:550px;
-  line-height:1.8;
-  margin:20px auto;
-  color:#e8d8e9;
-}
-
-/* 3D DIYA */
-
-.diya-scene{
-  width:250px;
-  height:245px;
-  perspective:700px;
-  margin:20px auto 5px;
-  position:relative;
-}
-
-.diya{
-  position:absolute;
-  width:190px;
-  height:100px;
-  left:30px;
-  bottom:35px;
-  transform-style:preserve-3d;
-  animation:diyaFloat 4s ease-in-out infinite;
-}
-
-.diya-bowl{
-  position:absolute;
-  width:190px;
-  height:80px;
-  bottom:0;
-  background:linear-gradient(180deg,#ffda78,#e47b18 65%,#8b3510);
-  border-radius:15px 15px 100px 100px;
-  border-bottom:8px solid #a44c12;
-  box-shadow:0 15px 35px #ff8c4280,
-             inset 0 8px 12px #fff3a0;
-  transform:rotateX(-8deg);
-}
-
-.diya-rim{
-  position:absolute;
-  width:190px;
-  height:30px;
-  top:2px;
-  border-radius:50%;
-  background:linear-gradient(#fff0ad,#c66a12);
-  border:4px solid #ffdb77;
-}
-
-.wick{
-  position:absolute;
-  width:8px;
-  height:25px;
-  background:#fff0bd;
-  top:-15px;
-  left:91px;
-  border-radius:50%;
-}
-
-.flame{
-  position:absolute;
-  width:42px;
-  height:70px;
-  left:79px;
-  top:-78px;
-  background:radial-gradient(ellipse at 50% 75%,
-    #fff 0%,#fff4a5 20%,#ffb32e 55%,#ff5a00 75%,transparent 76%);
-  border-radius:50% 50% 45% 45%;
-  filter:drop-shadow(0 0 17px orange);
-  transform-origin:bottom;
-  animation:flameMove .65s infinite alternate;
-}
-
-.flame:after{
-  content:"";
-  position:absolute;
-  width:18px;
-  height:35px;
-  left:12px;
-  top:23px;
-  background:#fff;
-  border-radius:50%;
-  filter:blur(3px);
-}
-
-@keyframes flameMove{
-  from{transform:rotate(-6deg) scale(.95)}
-  to{transform:rotate(7deg) scale(1.08)}
-}
-
-@keyframes diyaFloat{
-  0%,100%{transform:translateY(0) rotateY(-5deg)}
-  50%{transform:translateY(-14px) rotateY(8deg)}
-}
-
-button{
-  padding:13px 23px;
-  margin:8px;
-  border-radius:30px;
-  border:1px solid var(--gold);
-  background:transparent;
-  color:var(--gold);
-  font-size:14px;
-  cursor:pointer;
-  transition:.3s;
-}
-
-button:hover{
-  background:var(--gold);
-  color:#1b1020;
-  box-shadow:0 0 20px var(--accent);
-  transform:translateY(-3px);
-}
-
-section{
-  padding:65px 7%;
-  text-align:center;
-  position:relative;
-  z-index:1;
-}
-
-.section-title{
-  color:var(--gold);
-  font-size:clamp(28px,5vw,40px);
-  margin-bottom:15px;
-}
-
-.section-desc{
-  color:#d6c7d8;
-  margin-bottom:35px;
-  line-height:1.7;
-}
-
-.theme-grid,.festival-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:20px;
-  max-width:1000px;
-  margin:auto;
-}
-
-.theme-card,.festival-card{
-  padding:25px 15px;
-  background:linear-gradient(145deg,var(--panel),#120c20);
-  border:1px solid #ffffff25;
-  border-radius:18px;
-  transition:.4s;
-}
-
-.theme-card:hover,.festival-card:hover{
-  transform:translateY(-9px);
-  border-color:var(--gold);
-  box-shadow:0 0 25px #ffb52e40;
-}
-
-.theme-card .emoji,.festival-card .emoji{
-  font-size:45px;
-  margin-bottom:15px;
-}
-
-.theme-card h3,.festival-card h3{
-  color:var(--gold);
-  margin-bottom:10px;
-}
-
-.theme-card p,.festival-card p{
-  font-size:14px;
-  line-height:1.7;
-  color:#e0d4e3;
-}
-
-.rangoli{
-  width:180px;
-  height:180px;
-  margin:30px auto;
-  border:8px dotted var(--gold);
-  outline:7px double var(--pink);
-  border-radius:50%;
-  background:repeating-conic-gradient(
-    var(--accent) 0deg 15deg,
-    transparent 15deg 30deg
-  );
-  box-shadow:0 0 35px var(--accent);
-  animation:rotate 18s linear infinite;
-}
-
-@keyframes rotate{to{transform:rotate(360deg)}}
-
-.wish-box{
-  max-width:600px;
-  margin:auto;
-  padding:30px 15px;
-  background:var(--panel);
-  border:1px solid #ffffff30;
-  border-radius:20px;
-}
-
-input{
-  width:min(90%,350px);
-  padding:14px;
-  border-radius:25px;
-  border:1px solid var(--gold);
-  background:#10091e;
-  color:white;
-  outline:none;
-}
-
-#wish-result{
-  color:var(--gold);
-  font-size:19px;
-  line-height:1.8;
-  margin:20px auto;
-}
-
-footer{
-  text-align:center;
-  padding:35px 15px;
-  border-top:1px solid #ffffff20;
-  color:var(--gold);
-  position:relative;
-  z-index:1;
-}
-
-@media(max-width:600px){
-  nav{flex-direction:column;gap:15px}
-  nav a{margin:0 7px}
-  section{padding:50px 15px}
-}
+:root{--bg:#160b25;--panel:#291536;--gold:#ffd36e;--accent:#ff8a35;--pink:#ff75ad;--text:#fff5e5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% 15%,#462044 0%,var(--bg) 58%);color:var(--text);font-family:Georgia,serif;overflow-x:hidden}
+body.fantasy{--bg:#10103a;--panel:#24245c;--gold:#d8b4ff;--accent:#9b5de5;--pink:#ff9de2}
+body.future{--bg:#031d2c;--panel:#073b4c;--gold:#62ffe3;--accent:#00b4d8;--pink:#80eaff}
+body.royal{--bg:#2b1016;--panel:#4a1c22;--gold:#ffd166;--accent:#d97706;--pink:#f4a261}
+#sky{position:fixed;inset:0;pointer-events:none;z-index:0}
+header,main,footer{position:relative;z-index:1}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px clamp(16px,6vw,70px);border-bottom:1px solid #ffffff20}
+.brand{font-size:20px;letter-spacing:3px;color:var(--gold);font-weight:bold}
+nav a{color:var(--text);text-decoration:none;margin-left:18px;font:14px Arial,sans-serif}
+.hero{min-height:650px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:65px 18px 50px}
+.eyebrow{letter-spacing:5px;color:var(--gold);font:12px Arial,sans-serif}
+h1{font-size:clamp(44px,9vw,88px);line-height:1.05;margin:18px 0;color:var(--gold);text-shadow:0 0 15px var(--accent),0 0 42px var(--accent);animation:glow 2.2s ease-in-out infinite alternate}
+@keyframes glow{to{text-shadow:0 0 24px var(--pink),0 0 65px var(--accent)}}
+.hero p{max-width:600px;line-height:1.8;color:#f1dfed;font-size:17px}
+.diya-scene{height:245px;width:260px;position:relative;perspective:700px;margin:18px auto}
+.diya{position:absolute;left:35px;bottom:35px;width:190px;height:100px;transform-style:preserve-3d;animation:float 4s ease-in-out infinite}
+.bowl{position:absolute;bottom:0;width:190px;height:76px;border-radius:15px 15px 100px 100px;background:linear-gradient(#ffe59a 0%,#ffad32 35%,#b94b13 100%);border-bottom:8px solid #8f3511;box-shadow:0 15px 35px #ff8a3580,inset 0 8px 12px #fff4b0;transform:rotateX(-8deg)}
+.rim{position:absolute;top:0;width:190px;height:28px;border-radius:50%;background:linear-gradient(#fff2bb,#d8781c);border:4px solid #ffdc82}
+.wick{position:absolute;top:-15px;left:91px;width:8px;height:23px;background:#fff0bd;border-radius:50%}
+.flame{position:absolute;z-index:2;top:-79px;left:78px;width:42px;height:70px;border-radius:50% 50% 45% 45%;transform-origin:bottom;background:radial-gradient(ellipse at 50% 75%,#fff 0 12%,#fff1a3 25%,#ffb32e 56%,#ff5a00 74%,transparent 76%);filter:drop-shadow(0 0 17px #ff9b19);animation:flicker .55s infinite alternate}
+@keyframes flicker{to{transform:rotate(7deg) scale(1.08)}}@keyframes float{50%{transform:translateY(-13px) rotateY(9deg)}}
+button{border:1px solid var(--gold);border-radius:30px;padding:12px 20px;margin:7px;background:transparent;color:var(--gold);font-size:14px;cursor:pointer;transition:.25s}
+button:hover{background:var(--gold);color:#1b1020;box-shadow:0 0 20px var(--accent);transform:translateY(-2px)}
+section{padding:65px 18px;text-align:center}h2{font-size:clamp(28px,5vw,40px);color:var(--gold);margin:0 0 12px}
+.lead{max-width:650px;margin:0 auto 30px;color:#e3d5e8;line-height:1.7}
+.grid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:17px}
+.card{background:linear-gradient(145deg,var(--panel),#170d25);border:1px solid #ffffff28;border-radius:18px;padding:24px 17px;box-shadow:0 12px 30px #0003;transition:.3s}
+.card:hover{transform:translateY(-7px);border-color:var(--gold);box-shadow:0 0 24px #ffb52e35}
+.emoji{font-size:42px;margin-bottom:12px}.card h3{color:var(--gold);margin:5px 0 10px}.card p{font:14px/1.65 Arial,sans-serif;color:#e6dce9}
+.rangoli{width:175px;height:175px;margin:30px auto;border-radius:50%;border:9px dotted var(--gold);outline:7px double var(--pink);background:repeating-conic-gradient(var(--accent) 0 14deg,transparent 14deg 28deg);box-shadow:0 0 30px var(--accent);animation:spin 20s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wishbox{max-width:570px;margin:auto;padding:28px 18px;background:var(--panel);border:1px solid #ffffff30;border-radius:20px}
+input{width:min(90%,340px);padding:14px 17px;border:1px solid var(--gold);border-radius:28px;background:#160b25;color:white;font-size:15px;outline:none}
+#wish{min-height:55px;margin:20px auto;color:var(--gold);font-size:19px;line-height:1.6}
+footer{text-align:center;padding:30px 15px;border-top:1px solid #ffffff20;color:var(--gold)}
+@media(max-width:600px){header{flex-direction:column;gap:14px}nav a{margin:0 8px}.hero{min-height:600px}}
 </style>
 </head>
-
 <body>
-
-<canvas id="particles"></canvas>
-
-<nav>
-  <div class="logo">✦ DIWALI GLOW</div>
-  <div>
-    <a href="#themes">Themes</a>
-    <a href="#celebration">Celebrate</a>
-    <a href="#wishes">Wishes</a>
-  </div>
-</nav>
-
+<canvas id="sky"></canvas>
+<header><div class="brand">✦ DIWALI GLOW</div><nav><a href="#themes">Themes</a><a href="#days">Five Days</a><a href="#wishbox">Wishes</a></nav></header>
 <main>
-
-<div class="hero">
-  <div class="tag">THE FESTIVAL OF LIGHTS</div>
-
-  <h1>Happy Diwali</h1>
-
-  <p>
-    May every diya bring a new hope,
-    every sparkle create a beautiful memory,
-    and every moment shine with happiness.
-  </p>
-
-  <div class="diya-scene">
-    <div class="diya">
-      <div class="flame"></div>
-      <div class="wick"></div>
-      <div class="diya-rim"></div>
-      <div class="diya-bowl"></div>
-    </div>
-  </div>
-
-  <button onclick="showFireworks()">✦ Celebrate Now ✦</button>
-  <button onclick="document.getElementById('themes').scrollIntoView({behavior:'smooth'})">
-    Explore Themes
-  </button>
-</div>
-
-<section id="themes">
-  <h2 class="section-title">Choose Your World</h2>
-  <p class="section-desc">Four beautiful moods. One magical celebration.</p>
-
-  <div class="theme-grid">
-
-    <div class="theme-card">
-      <div class="emoji">👑</div>
-      <h3>Luxury Gold</h3>
-      <p>Golden glow, elegant lights and timeless celebrations.</p>
-      <button onclick="setTheme('')">Explore</button>
-    </div>
-
-    <div class="theme-card">
-      <div class="emoji">🦋</div>
-      <h3>Magical Fantasy</h3>
-      <p>Dreamy colours, magical lights and a fantasy world.</p>
-      <button onclick="setTheme('fantasy')">Explore</button>
-    </div>
-
-    <div class="theme-card">
-      <div class="emoji">🚀</div>
-      <h3>Futuristic 3D</h3>
-      <p>Neon colours and a modern glowing atmosphere.</p>
-      <button onclick="setTheme('future')">Explore</button>
-    </div>
-
-    <div class="theme-card">
-      <div class="emoji">🏰</div>
-      <h3>Indian Royal</h3>
-      <p>Traditional colours with a royal Indian touch.</p>
-      <button onclick="setTheme('royal')">Explore</button>
-    </div>
-
-  </div>
+<section class="hero">
+<div class="eyebrow">THE FESTIVAL OF LIGHTS</div><h1>Happy Diwali</h1>
+<p>May every diya bring hope, every sparkle create a memory, and every moment fill your home with happiness.</p>
+<div class="diya-scene" aria-label="Animated glowing diya"><div class="diya"><div class="flame"></div><div class="wick"></div><div class="rim"></div><div class="bowl"></div></div></div>
+<div><button onclick="burst()">✦ Celebrate with Fireworks</button><button onclick="document.querySelector('#themes').scrollIntoView({behavior:'smooth'})">Explore Themes ↓</button></div>
 </section>
-
-<section id="celebration">
-  <h2 class="section-title">A World of Celebration</h2>
-  <p class="section-desc">Let the lights and colours tell their story.</p>
-
-  <div class="rangoli"></div>
-  <p style="color:var(--gold)">✧ A little colour. A little light. Endless happiness. ✧</p>
-
-  <button onclick="showFireworks()">🎆 Launch Fireworks</button>
-</section>
-
-<section>
-  <h2 class="section-title">Five Days of Light</h2>
-  <p class="section-desc">Celebrate every beautiful moment.</p>
-
-  <div class="festival-grid">
-    <div class="festival-card">
-      <div class="emoji">🌼</div>
-      <h3>Dhanteras</h3>
-      <p>Welcome prosperity and new beginnings.</p>
-    </div>
-
-    <div class="festival-card">
-      <div class="emoji">🪔</div>
-      <h3>Naraka Chaturdashi</h3>
-      <p>Celebrate the victory of light.</p>
-    </div>
-
-    <div class="festival-card">
-      <div class="emoji">✨</div>
-      <h3>Diwali</h3>
-      <p>Fill the world with joy and brightness.</p>
-    </div>
-
-    <div class="festival-card">
-      <div class="emoji">🌿</div>
-      <h3>Govardhan Puja</h3>
-      <p>A day of gratitude and devotion.</p>
-    </div>
-
-    <div class="festival-card">
-      <div class="emoji">❤️</div>
-      <h3>Bhai Dooj</h3>
-      <p>Celebrate the bond of siblings.</p>
-    </div>
-  </div>
-</section>
-
-<section id="wishes">
-  <h2 class="section-title">Create Your Own Wish</h2>
-  <p class="section-desc">Make your Diwali greeting personal.</p>
-
-  <div class="wish-box">
-    <input id="username" type="text" placeholder="Enter your name">
-
-    <br>
-
-    <button onclick="createWish()">Create My Wish ✨</button>
-
-    <div id="wish-result"></div>
-
-    <button onclick="shareWish()">Share on WhatsApp</button>
-  </div>
-</section>
-
+<section id="themes"><h2>Choose Your Diwali World</h2><p class="lead">Tap a theme to transform the colours and atmosphere of your celebration.</p>
+<div class="grid">
+<article class="card"><div class="emoji">👑</div><h3>Luxury Gold</h3><p>Warm golden light, elegant details and a timeless festive glow.</p><button onclick="setTheme('')">Select Theme</button></article>
+<article class="card"><div class="emoji">🦋</div><h3>Magical Fantasy</h3><p>A dreamy world of lilac skies, enchanted sparkles and wonder.</p><button onclick="setTheme('fantasy')">Select Theme</button></article>
+<article class="card"><div class="emoji">🚀</div><h3>Futuristic 3D</h3><p>Electric aqua light and a modern neon-inspired celebration.</p><button onclick="setTheme('future')">Select Theme</button></article>
+<article class="card"><div class="emoji">🏰</div><h3>Indian Royal</h3><p>Rich festive colours inspired by traditional Indian grandeur.</p><button onclick="setTheme('royal')">Select Theme</button></article>
+</div></section>
+<section><h2>Rangoli of Happiness</h2><p class="lead">A circle of colour, joy and new beginnings.</p><div class="rangoli"></div><button onclick="newRangoli()">Change Rangoli</button></section>
+<section id="days"><h2>Five Days of Light</h2><p class="lead">Celebrate the beautiful moments of the festive season.</p>
+<div class="grid">
+<article class="card"><div class="emoji">🌼</div><h3>Dhanteras</h3><p>Welcome prosperity and fresh beginnings.</p></article>
+<article class="card"><div class="emoji">🪔</div><h3>Naraka Chaturdashi</h3><p>Celebrate the triumph of light and goodness.</p></article>
+<article class="card"><div class="emoji">✨</div><h3>Diwali</h3><p>Share joy, light and happiness with everyone.</p></article>
+<article class="card"><div class="emoji">🌿</div><h3>Govardhan Puja</h3><p>A moment for gratitude and togetherness.</p></article>
+<article class="card"><div class="emoji">❤️</div><h3>Bhai Dooj</h3><p>Celebrate the special bond between siblings.</p></article>
+</div></section>
+<section id="wishbox"><h2>Create a Personal Greeting</h2><p class="lead">Add a name and create a greeting to share with family and friends.</p>
+<div class="wishbox"><input id="person" type="text" maxlength="35" placeholder="Enter a name"><div><button onclick="makeWish()">Create My Wish ✨</button></div><div id="wish" aria-live="polite"></div><button onclick="shareWish()">Share on WhatsApp</button></div></section>
 </main>
-
-<footer>
-  <h2>✦ DIWALI GLOW ✦</h2>
-  <p style="margin-top:12px">Made with love and light.</p>
-  <p style="margin-top:8px">May your life always shine! 🪔</p>
-</footer>
-
+<footer>Made with ✨ and 🪔 · May your world always glow!</footer>
 <script>
-function setTheme(theme){
-  document.body.className=theme;
-}
-
-function createWish(){
-  const name=document.getElementById("username").value.trim();
-
-  if(!name){
-    alert("Please enter your name!");
-    return;
-  }
-
-  document.getElementById("wish-result").innerText=
-    "✨ Happy Diwali, "+name+"! May your life shine with happiness, success and beautiful memories. 🪔";
-}
-
-function shareWish(){
-  const message=document.getElementById("wish-result").innerText;
-
-  if(!message){
-    alert("Create your wish first!");
-    return;
-  }
-
-  window.open(
-    "https://wa.me/?text="+encodeURIComponent(message),
-    "_blank"
-  );
-}
-
-/* FIREWORKS AND FLOATING PARTICLES */
-
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-
-let W,H;
-let sparks=[];
-let floating=[];
-
-function resize(){
-  W=canvas.width=window.innerWidth;
-  H=canvas.height=window.innerHeight;
-}
-resize();
-window.addEventListener("resize",resize);
-
-for(let i=0;i<45;i++){
-  floating.push({
-    x:Math.random()*W,
-    y:Math.random()*H,
-    r:Math.random()*2+1,
-    speed:Math.random()*.7+.2
-  });
-}
-
-function showFireworks(){
-  for(let j=0;j<4;j++){
-    const x=Math.random()*W;
-    const y=Math.random()*H*.55;
-
-    for(let i=0;i<65;i++){
-      const angle=Math.PI*2*i/65;
-      const speed=Math.random()*4+1;
-
-      sparks.push({
-        x,y,
-        vx:Math.cos(angle)*speed,
-        vy:Math.sin(angle)*speed,
-        life:80,
-        hue:Math.random()*60+25
-      });
-    }
-  }
-}
-
-function animate(){
-  ctx.clearRect(0,0,W,H);
-
-  floating.forEach(p=>{
-    p.y-=p.speed;
-    if(p.y<0){
-      p.y=H;
-      p.x=Math.random()*W;
-    }
-
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle="rgba(255,209,102,.65)";
-    ctx.fill();
-  });
-
-  sparks.forEach((p,i)=>{
-    p.x+=p.vx;
-    p.y+=p.vy;
-    p.vy+=.025;
-    p.life--;
-
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,2.5,0,Math.PI*2);
-    ctx.fillStyle=`hsla(${p.hue},100%,65%,${p.life/80})`;
-    ctx.fill();
-
-    if(p.life<=0){
-      sparks.splice(i,1);
-    }
-  });
-
-  requestAnimationFrame(animate);
-}
-
+function setTheme(name){document.body.className=name}
+const rangoli=document.querySelector('.rangoli');
+const styles=['repeating-conic-gradient(#ff8a35 0 14deg,transparent 14deg 28deg)','repeating-conic-gradient(#9b5de5 0 14deg,#ff9de2 14deg 28deg,transparent 28deg 42deg)','repeating-conic-gradient(#00b4d8 0 14deg,#62ffe3 14deg 28deg,transparent 28deg 42deg)','repeating-conic-gradient(#d97706 0 14deg,#ffd166 14deg 28deg,transparent 28deg 42deg)','repeating-conic-gradient(#ff4d8d 0 14deg,#ffe66d 14deg 28deg,transparent 28deg 42deg)'];
+let ri=0;function newRangoli(){ri=(ri+1)%styles.length;rangoli.style.background=styles[ri]}
+function makeWish(){const name=document.getElementById('person').value.trim();if(!name){alert('Please enter a name first.');return}document.getElementById('wish').textContent='✨ Happy Diwali, '+name+'! May your days be bright, your heart be happy, and your year be filled with wonderful moments. 🪔'}
+function shareWish(){const msg=document.getElementById('wish').textContent;if(!msg){alert('Create your greeting first.');return}window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank')}
+const canvas=document.getElementById('sky'),ctx=canvas.getContext('2d');let W=0,H=0,particles=[],stars=[];
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;stars=Array.from({length:65},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.7+.4,a:Math.random()}))}
+addEventListener('resize',resize);resize();
+function burst(){for(let k=0;k<3;k++){const x=Math.random()*W,y=Math.random()*H*.55;for(let i=0;i<55;i++){const a=Math.PI*2*i/55,s=Math.random()*3.8+1;particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:65,max:65,h:Math.random()*55+25})}}}
+function animate(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=.025;ctx.globalAlpha=.3+.45*Math.abs(Math.sin(s.a));ctx.fillStyle='#fff2c6';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;particles.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.025;p.life--;ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle='hsl('+p.h+',100%,65%)';ctx.beginPath();ctx.arc(p.x,p.y,2.2,0,Math.PI*2);ctx.fill();if(p.life<=0)particles.splice(i,1)});ctx.globalAlpha=1;requestAnimationFrame(animate)}
 animate();
 </script>
-
 </body>
 </html>
